@@ -1,5 +1,5 @@
 {
-  "name": "yarn",
+  "name": "@whitecolor/yarn",
   "installationMethod": "unknown",
   "version": "0.18.0-0",
   "license": "BSD-2-Clause",
