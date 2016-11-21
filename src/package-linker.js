@@ -169,6 +169,23 @@ export default class PackageLinker {
       if (stat.isSymbolicLink()) {
         possibleExtraneous.delete(loc);
         queue.delete(loc);
+      } else {
+        const folder = path.basename(loc);
+        const isScopedName = folder.indexOf('@') === 0;
+        const isScopedContainer = isScopedName && 
+          !await fs.exists(path.join(loc, 'package.json'));
+        if (isScopedContainer) {          
+          const scopedFiles = await fs.readdir(loc);
+          for (const scopedFile of scopedFiles) {
+            const scopedLoc = path.join(loc, scopedFile);
+            const stat = await fs.lstat(scopedLoc);
+            if (stat.isSymbolicLink()) {
+              queue.delete(loc);
+              possibleExtraneous.delete(loc);
+              queue.delete(scopedLoc);
+            }
+          }              
+        }
       }
     }
 
