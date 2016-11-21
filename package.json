@@ -1,7 +1,7 @@
 {
   "name": "@whitecolor/yarn",
   "installationMethod": "unknown",
-  "version": "0.18.0-0",
+  "version": "0.18.0-0-1",
   "license": "BSD-2-Clause",
   "preferGlobal": true,
   "dependencies": {
